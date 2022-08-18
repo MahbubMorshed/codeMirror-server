@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import django_heroku
+import dj_database_url
 
 from pathlib import Path
 
@@ -25,7 +27,7 @@ SECRET_KEY = 'django-insecure-c)l7wo3d22p=3+*du&z6wu)huq0$f5f-t-*ll569ey*mirr2-4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['code-mirror-server.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -48,6 +50,9 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
 
     'django.middleware.security.SecurityMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -83,10 +88,10 @@ WSGI_APPLICATION = 'backEnd.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'table',
-        'USER': 'postgres',
-        'PASSWORD': 'O1!neT2@wo',
-        'HOST': 'localhost',
+        'NAME': 'deg6f1333enrrj',
+        'USER': 'dhvjjkgpwpaqcx',
+        'PASSWORD': 'b9d2dd44d7bcf0844941016659d953f096d3e5f55e4b8a29352a152942e24431',
+        'HOST': 'ec2-52-86-115-245.compute-1.amazonaws.com',
         'PORT': '5432'
     }
 }
@@ -125,12 +130,26 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+import os
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS =[
+    os.path.join(BASE_DIR, 'static')
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+django_heroku.settings(locals())
 
 CORS_ALLOW_ALL_ORIGINS = True
