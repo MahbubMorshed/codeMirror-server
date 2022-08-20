@@ -10,8 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-import django_heroku
-import dj_database_url
+# import django_heroku
+# import dj_database_url
 
 from pathlib import Path
 
@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-c)l7wo3d22p=3+*du&z6wu)huq0$f5f-t-*ll569ey*mirr2-4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['code-mirror-server.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -52,7 +52,7 @@ MIDDLEWARE = [
 
     'django.middleware.security.SecurityMiddleware',
 
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -86,22 +86,22 @@ WSGI_APPLICATION = 'backEnd.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'deg6f1333enrrj',
-        'USER': 'dhvjjkgpwpaqcx',
-        'PASSWORD': 'b9d2dd44d7bcf0844941016659d953f096d3e5f55e4b8a29352a152942e24431',
-        'HOST': 'ec2-52-86-115-245.compute-1.amazonaws.com',
-        'PORT': '5432'
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'deg6f1333enrrj',
+#         'USER': 'dhvjjkgpwpaqcx',
+#         'PASSWORD': 'b9d2dd44d7bcf0844941016659d953f096d3e5f55e4b8a29352a152942e24431',
+#         'HOST': 'ec2-52-86-115-245.compute-1.amazonaws.com',
+#         'PORT': '5432'
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -156,7 +156,7 @@ MEDIA_ROOT = 'static/images'
 
 
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Default primary key field type
