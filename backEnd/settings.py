@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+
 import django_heroku
 import dj_database_url
 
@@ -95,7 +96,12 @@ DATABASES = {
         'PORT': '5432'
     }
 }
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -133,16 +139,21 @@ USE_TZ = True
 import os
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/images/'
+STATIC_ROOT = BASE_DIR / 'static'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS =[
-    BASE_DIR / 'static'
+    'backEnd/static'
 ]
 
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
-
+MEDIA_URL = '/images/'
 MEDIA_ROOT = 'static/images'
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+
+
+
+
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -153,6 +164,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-django_heroku.settings(locals())
 
 CORS_ALLOW_ALL_ORIGINS = True
